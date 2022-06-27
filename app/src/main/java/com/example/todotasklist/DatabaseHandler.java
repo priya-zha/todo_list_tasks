@@ -16,8 +16,8 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final int DB_VERSION = 1;
-    public static final String DB_NAME = "TODO_LIST_SQLITE";
-    public static final String TABLE_NAME = "TODO_TASK";
+    public static final String DB_NAME = "TODO_LIST_SQLITEDB";
+    public static final String TABLE_NAME = "TODO_LIST_TASK";
     public static final String KEY_ID = "ID";
     public static final String KEY_ITEM = "TASK";
     public static final String KEY_DATE = "DATE";
@@ -52,7 +52,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public int getTaskCount() {
         String countQuery = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery(countQuery, null);
         return cursor.getCount();
     }
@@ -96,7 +95,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
         }
         finally {
-            db.endTransaction();
+           // db.endTransaction();
             cursor.close();
         }
         return taskList;

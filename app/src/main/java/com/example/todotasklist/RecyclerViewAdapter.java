@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -80,11 +81,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.editButton:
+                  //  editButton.setBackgroundResource(R.drawable.ic_baseline_edit_24);
+                    editButton.setBackgroundResource(R.drawable.ic_baseline_edit_24);
                     int position = getAdapterPosition();
                     Task task = taskList.get(position);
                     editItem(task);
+
                     break;
                 case R.id.deleteButton:
+                    deleteButton.setBackgroundResource(R.drawable.ic_outline_delete_24);
                     position = getAdapterPosition();
                     task = taskList.get(position);
                     deleteItem(task.getId());
