@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,9 +16,8 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final int DB_VERSION = 1;
-    public static final String DB_NAME = "TODO_TASK";
-    public static final String TABLE_NAME = "Todo_task";
-
+    public static final String DB_NAME = "TODO_LIST_SQLITE";
+    public static final String TABLE_NAME = "TODO_TASK";
     public static final String KEY_ID = "ID";
     public static final String KEY_ITEM = "TASK";
     public static final String KEY_DATE = "DATE";
@@ -34,10 +31,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,TASK TEXT, DATE LONG)");
-
-
-
-
     }
 
     @Override
@@ -53,9 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DATE, java.lang.System.currentTimeMillis());
         db.insert(TABLE_NAME, null, values);
         Toast.makeText(ctx, "saved to sqlite", Toast.LENGTH_SHORT).show();
-
         Log.d("Saved!", "Saved to sqlite" + values);
-
 
     }
     public int getTaskCount() {
@@ -90,27 +81,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor=null;
         List<Task> taskList = new ArrayList<>();
 
-//        Cursor cursor = db.query(Constants.TABLE_NAME, new String[]{
-//                Constants.KEY_ID, Constants.KEY_ITEM, Constants.KEY_DATE
-//        }, null, null, null, null, null,null);
-        db.beginTransaction();
-
         try {
             cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
-
-
             if (cursor.moveToFirst()) {
                 do {
                     Task task = new Task();
                     task.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(KEY_ID))));
                     task.setName(cursor.getString(cursor.getColumnIndex(KEY_ITEM)));
-
-
                     java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance();
                     String formatDate = dateFormat.format(new Date(cursor.getLong(cursor.getColumnIndex(KEY_DATE))));
-
                     task.setDateAdded(formatDate);
-
                     taskList.add(task);
                 } while (cursor.moveToNext());
             }
@@ -119,7 +99,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.endTransaction();
             cursor.close();
         }
-
         return taskList;
     }
 }

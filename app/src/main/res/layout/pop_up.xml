@@ -32,7 +32,6 @@
                 android:hint="@string/hint_item"
                 android:inputType="text" />
 
-
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"

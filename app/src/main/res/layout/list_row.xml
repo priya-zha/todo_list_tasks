@@ -41,14 +41,14 @@
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="15dp"
                     android:background="@android:drawable/ic_menu_edit" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/deleteButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"

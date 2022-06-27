@@ -1,20 +1,17 @@
 package com.example.todotasklist;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -62,7 +59,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             dateAdded = itemView.findViewById(R.id.dataAdded);
             editButton = itemView.findViewById(R.id.editButton);
             deleteButton = itemView.findViewById(R.id.deleteButton);
-
             editButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
 
@@ -76,14 +72,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("id", task.getId());
                     intent.putExtra("name", task.getName());
                     intent.putExtra("date", task.getDateAdded());
-
                     context.startActivity(intent);
-
                 }
             });
         }
-
-
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -100,16 +92,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         }
 
-
-
         public void deleteItem(final int id) {
             dialogBuilder = new AlertDialog.Builder(context);
             inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.confirmation_dialog, null);
-
             Button noBtn = view.findViewById(R.id.noButton);
             Button yesBtn = view.findViewById(R.id.yesButton);
-
             dialogBuilder.setView(view);
             dialog = dialogBuilder.create();
             dialog.show();
@@ -136,18 +124,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public void editItem(final Task task) {
             dialogBuilder = new AlertDialog.Builder(context);
-
             inflater = LayoutInflater.from(context);
             final View view = inflater.inflate(R.layout.pop_up, null);
-
             final EditText taskItem = view.findViewById(R.id.item);
             final TextView title = view.findViewById(R.id.title);
 
             title.setText("Edit Task");
             taskItem.setText(task.getName());
-
             Button saveButton = (Button) view.findViewById(R.id.saveButton);
-
             dialogBuilder.setView(view);
             dialog = dialogBuilder.create();
             dialog.show();
@@ -156,10 +140,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     DatabaseHandler db = new DatabaseHandler(context);
-
                     task.setName(taskItem.getText().toString());
-
-
                     if (!taskItem.getText().toString().isEmpty()) {
                         db.updateTask(task);
                         notifyItemChanged(getAdapterPosition(), task);
