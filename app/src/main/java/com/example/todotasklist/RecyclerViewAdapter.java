@@ -150,7 +150,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         db.updateTask(task);
                         notifyItemChanged(getAdapterPosition(), task);
                     } else {
-                        Snackbar.make(view, "Add Grocery and quantity", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, "Add task", Snackbar.LENGTH_LONG).show();
                     }
                     dialog.dismiss();
                 }

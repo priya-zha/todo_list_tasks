@@ -72,7 +72,7 @@ public class ListActivity<myCustomArray> extends AppCompatActivity {
         recyclerViewAdapter = new RecyclerViewAdapter(this, listItems);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerViewAdapter.notifyDataSetChanged();
-
+        //send data to MySQL
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
