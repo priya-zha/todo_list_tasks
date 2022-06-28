@@ -27,7 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DB_NAME,null,DB_VERSION);
         this.ctx=context;
     }
-
+// create a table
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,TASK TEXT, DATE LONG)");
@@ -38,6 +38,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+    // add task
     public void addTask(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -49,12 +50,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.d("Saved!", "Saved to sqlite" + values);
 
     }
+    //get count
     public int getTaskCount() {
         String countQuery = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         return cursor.getCount();
     }
+    //update task
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

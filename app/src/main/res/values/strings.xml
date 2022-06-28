@@ -5,4 +5,7 @@
     <string name="enter_item">Add Item</string>
     <string name="task_name">Name</string>
     <string name="data_added">Date added</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_username">Enter username</string>
 </resources>
